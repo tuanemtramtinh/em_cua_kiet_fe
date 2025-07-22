@@ -1,35 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaUser } from "react-icons/fa";
+import { IoLogIn } from "react-icons/io5";
+import { FaUserPlus } from "react-icons/fa6";
+import Navbar from "./Navbar";
+import HeaderButton from "../components/HeaderButton";
 
 const Header = () => {
   return (
     <>
-      <header className="flex py-[18px] items-center">
-        <h1 className="flex-1 text-4xl font-bold">Logo</h1>
-        <ul className="flex gap-[52px] font-bold text-[16px] mr-[45px]">
-          <li>
-            <Link to={"/"}>Trang Chủ</Link>
-          </li>
-          <li>
-            <Link to={"quiz"}>Trắc Nghiệm</Link>
-          </li>
-          <li>
-            <Link to={"resource"}>Tài Nguyên</Link>
-          </li>
-          <li>
-            <Link to={"passport"}>Hộ chiếu</Link>
-          </li>
-          <li>
-            <Link to={"contact"}>Liên hệ</Link>
-          </li>
-        </ul>
-        <div className="bg-[#131313] p-2.5 rounded-full flex items-center">
-          <FaUser className="text-[#131313] text-[45px] bg-white rounded-full p-2 mr-[10px]" />
-          <Link to={"user"} className="text-white text-[16px] font-bold">
-            Người dùng
-          </Link>
+      <header className="bg-[#D8E49A]">
+        <div className="container mx-auto flex items-center justify-between py-4">
+          <img src="/Logo.png" alt="Logo" className="w-[7%]" />
+          <div className="flex gap-5">
+            <HeaderButton icon={<IoLogIn />} label="Đăng Nhập" link="/login" />
+            <HeaderButton
+              icon={<FaUserPlus />}
+              label="Đăng Ký"
+              link="/register"
+            />
+          </div>
         </div>
+        <Navbar />
       </header>
     </>
   );

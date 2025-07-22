@@ -7,6 +7,8 @@ import Quiz from "../pages/Quiz";
 import Contact from "../pages/Contact";
 import Resource from "../pages/Resource";
 import Passport from "../pages/Passport";
+import Register from "../pages/Register";
+import Login from "../pages/Login";
 
 const AppRoutes = () => {
   return (
@@ -18,6 +20,8 @@ const AppRoutes = () => {
         <Route path="contact" element={<Contact />} />
         <Route path="passport" element={<Passport />} />
         <Route path="resource" element={<Resource />} />
+        <Route path="register" element={<Register />} />
+        <Route path="login" element={<Login />} />
       </Route>
     </Routes>
   );
