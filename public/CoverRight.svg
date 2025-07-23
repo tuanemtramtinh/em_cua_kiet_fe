@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Passport" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 878.19 1271.86">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="-5850.96" y1="635.93" x2="-4972.76" y2="635.93" gradientTransform="translate(5850.96 1271.86) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#852b35"/>
+      <stop offset=".08" stop-color="#c5455a"/>
+      <stop offset="1" stop-color="#842c38"/>
+    </linearGradient>
+  </defs>
+  <path class="cls-1" d="M16.66,0h810.06c28.41,0,51.48,23.07,51.48,51.48v1168.9c0,28.41-23.07,51.48-51.48,51.48H16.66c-9.19,0-16.66-7.46-16.66-16.66V16.66C0,7.46,7.46,0,16.66,0Z" transform="translate(878.19 1271.86) rotate(180)"/>
+</svg>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Passport" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 876.19 1274.07">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="894.94" y1="638.13" x2="1773.13" y2="638.13" gradientTransform="translate(-894.94 1276.27) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#852b35"/>
+      <stop offset=".08" stop-color="#c5455a"/>
+      <stop offset="1" stop-color="#842c38"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="23.74" y1="635.93" x2="876.19" y2="635.93" gradientTransform="translate(899.92 1271.86) rotate(-180)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f2ede9"/>
+      <stop offset="1" stop-color="#e7d9d0"/>
+    </linearGradient>
+  </defs>
+  <path class="cls-2" d="M16.66,2.2h810.06c28.41,0,51.48,23.07,51.48,51.48v1168.9c0,28.41-23.07,51.48-51.48,51.48H16.66c-9.19,0-16.66-7.46-16.66-16.66V18.86C0,9.67,7.46,2.2,16.66,2.2Z" transform="translate(878.19 1276.27) rotate(180)"/>
+  <path class="cls-1" d="M39.9,18.64h786.31c27.58,0,49.97,22.39,49.97,49.97v1134.64c0,27.58-22.39,49.97-49.97,49.97H39.9c-8.92,0-16.17-7.24-16.17-16.17V34.81c0-8.92,7.24-16.17,16.17-16.17Z" transform="translate(899.92 1271.86) rotate(180)"/>
+</svg>

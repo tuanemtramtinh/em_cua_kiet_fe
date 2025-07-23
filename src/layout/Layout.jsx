@@ -7,13 +7,9 @@ import HTMLFlipBook from "react-pageflip";
 const Layout = () => {
   return (
     <>
-      <div className="container mx-auto">
+      <div className="flex min-h-screen flex-col">
         <Header />
-
-        <main>
-          <Outlet />
-        </main>
-
+        <Outlet />
         <Footer />
       </div>
     </>
