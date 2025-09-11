@@ -1,23 +1,58 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { MdLogout } from "react-icons/md";
 import { IoLogIn } from "react-icons/io5";
 import { FaUserPlus } from "react-icons/fa6";
 import Navbar from "./Navbar";
 import HeaderButton from "../components/HeaderButton";
+import AppContext from "../contexts/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const { user, setUser } = useContext(AppContext);
+
+  const handleLogout = () => {
+    localStorage.removeItem("userInfo");
+    setUser(null);
+    navigate("/");
+  };
+
+  console.log(user);
+
   return (
     <>
       <header className="bg-[#D8E49A]">
         <div className="container mx-auto flex items-center justify-between py-4">
           <img src="/Logo.png" alt="Logo" className="w-[7%]" />
           <div className="flex gap-5">
-            <HeaderButton icon={<IoLogIn />} label="Đăng Nhập" link="/login" />
-            <HeaderButton
-              icon={<FaUserPlus />}
-              label="Đăng Ký"
-              link="/register"
-            />
+            {user ? (
+              <>
+                <div>
+                  <span className="mr-4 text-lg font-semibold text-[#333333]">
+                    Xin chào, {user.name}
+                  </span>
+                  <button
+                    onClick={handleLogout}
+                    className="inline-flex cursor-pointer items-center gap-2 rounded-4xl bg-[#F8FCE1] px-3 py-2 text-xl font-bold text-[#FF9C33]"
+                  >
+                    <span>Đăng Xuất</span> <MdLogout />
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <HeaderButton
+                  icon={<IoLogIn />}
+                  label="Đăng Nhập"
+                  link="/login"
+                />
+                <HeaderButton
+                  icon={<FaUserPlus />}
+                  label="Đăng Ký"
+                  link="/register"
+                />
+              </>
+            )}
           </div>
         </div>
         <Navbar />
