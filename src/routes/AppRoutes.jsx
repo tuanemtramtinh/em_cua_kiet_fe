@@ -9,6 +9,7 @@ import Resource from "../pages/Resource";
 import Passport from "../pages/Passport";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import Profile from "../pages/Profile";
 
 const AppRoutes = () => {
   return (
@@ -22,6 +23,7 @@ const AppRoutes = () => {
         <Route path="resource" element={<Resource />} />
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
+        <Route path="profile" element={<Profile />} />
       </Route>
     </Routes>
   );
