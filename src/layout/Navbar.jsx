@@ -18,6 +18,9 @@ const Navbar = () => {
           <Link to="/passport">Hộ Chiếu</Link>
         </li>
         <li>
+          <Link to="/video">Video</Link>
+        </li>
+        <li>
           <Link to="/contact">Liên Hệ</Link>
         </li>
       </ul>
