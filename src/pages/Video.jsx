@@ -7,12 +7,25 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-// import ";
-
 // import required modules
 import { Pagination, Navigation } from "swiper/modules";
 
 const Video = () => {
+  const videoList = [
+    {
+      title: "Video về người kết nối",
+      url: "https://www.youtube.com/embed/Jma_23zeSgY?si=8OVkDb3AUVAh9yoU",
+    },
+    {
+      title: "Video về người sáng tạo",
+      url: "https://www.youtube.com/embed/khtEMEvWi0Q?si=OtKMRdEcky1B2c71",
+    },
+    {
+      title: "Video về người quan sát",
+      url: "https://www.youtube.com/embed/BRUFc5rCMn0?si=xLsKFEdk61kHaYyR",
+    },
+  ];
+
   return (
     <>
       <div className="bg-[url(/background.svg)] bg-cover bg-center">
@@ -33,27 +46,27 @@ const Video = () => {
                 modules={[Pagination, Navigation]}
                 className="mySwiper"
               >
-                <SwiperSlide>
-                  <iframe
-                    width="560"
-                    height="315"
-                    src="https://www.youtube.com/embed/CTV-sZ4r1t0?si=CtH8K_4dL3jpIl8_"
-                    title="YouTube video player"
-                    // @ts-ignore
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen
-                  ></iframe>
-                </SwiperSlide>
-                <SwiperSlide>Slide 2</SwiperSlide>
-                <SwiperSlide>Slide 3</SwiperSlide>
-                <SwiperSlide>Slide 4</SwiperSlide>
-                <SwiperSlide>Slide 5</SwiperSlide>
-                <SwiperSlide>Slide 6</SwiperSlide>
-                <SwiperSlide>Slide 7</SwiperSlide>
-                <SwiperSlide>Slide 8</SwiperSlide>
-                <SwiperSlide>Slide 9</SwiperSlide>
+                {videoList.map((video, index) => (
+                  <SwiperSlide>
+                    <div key={index}>
+                      <h2 className="mb-5 text-center text-2xl font-bold">
+                        {video.title}
+                      </h2>
+                      <iframe
+                        width="560"
+                        height="315"
+                        src={video.url}
+                        title="YouTube video player"
+                        // @ts-ignore
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen
+                        className="rounded-xl"
+                      ></iframe>
+                    </div>
+                  </SwiperSlide>
+                ))}
               </Swiper>
             </div>
           </div>

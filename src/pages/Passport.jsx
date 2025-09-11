@@ -24,7 +24,7 @@ const Passport = () => {
         <div className="container mx-auto py-10">
           <div className="flex justify-between">
             <MucLuc />
-            <div className="flex h-[600px] w-[calc((100%*2/3)-20px)] items-center justify-center">
+            <div className="flex h-[650px] w-[calc((100%*3/4)-20px)] items-center justify-center">
               <Swiper
                 slidesPerView={1}
                 centeredSlides={false}
@@ -44,7 +44,7 @@ const Passport = () => {
                 //   clickable: true,
                 // }}
                 modules={[Keyboard, Scrollbar, Navigation, Pagination]}
-                className="mySwiper"
+                className="passportSwiper"
               >
                 <SwiperSlide>
                   <div className="flex h-full w-full items-center justify-center rounded-2xl bg-[#08083C] py-7">
