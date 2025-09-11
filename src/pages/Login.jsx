@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import Form from "../components/Form";
+import api from "../lib/axios";
+import AppContext from "../contexts/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const { setUser } = useContext(AppContext);
+
   const listInput = [
     {
-      label: "Email: ",
-      type: "email",
-      id: "email",
-      placeholder: "Nhập email của bạn",
+      label: "Username: ",
+      type: "text",
+      id: "username",
+      placeholder: "Nhập tên đăng nhập của bạn",
       labelStyle: "text-lg font-semibold",
       inputStyle: "rounded-2xl bg-[#FFF8CE] w-full",
+      rules: {
+        required: "Vui lòng nhập tên đăng nhập",
+      },
     },
     {
       label: "Mật khẩu: ",
@@ -18,12 +28,23 @@ const Login = () => {
       placeholder: "Nhập mật khẩu của bạn",
       labelStyle: "text-lg font-semibold",
       inputStyle: "rounded-2xl bg-[#FFF8CE] w-full",
+      rules: {
+        required: "Vui lòng nhập mật khẩu",
+      },
     },
   ];
 
   const button = {
     style: "rounded-3xl bg-[#FF9C33] text-white",
     content: "Đăng nhập",
+  };
+
+  const onSubmit = async (data) => {
+    const response = await api.post("user/login", data);
+    const userInfo = response.data.data;
+    localStorage.setItem("userInfo", JSON.stringify(userInfo));
+    setUser(userInfo);
+    navigate("/");
   };
 
   return (
@@ -46,6 +67,7 @@ const Login = () => {
               title={"Đăng Nhập"}
               listInput={listInput}
               button={button}
+              onSubmit={onSubmit}
             />
           </div>
         </div>
