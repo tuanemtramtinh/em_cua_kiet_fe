@@ -12,6 +12,8 @@ const Result = ({ totalScore }) => {
     }
   }, [totalScore]);
 
+  
+
   let group = '';
   let icon = '';
   if (totalScore >= 18 && totalScore <= 24) {
