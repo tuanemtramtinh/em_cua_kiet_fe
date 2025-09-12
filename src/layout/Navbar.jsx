@@ -9,11 +9,11 @@ const Navbar = () => {
           <Link to="/">Trang Chủ</Link>
         </li>
         <li>
-          <Link to="/passport">Trắc Nghiệm</Link>
+          <Link to="/quiz">Trắc Nghiệm</Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/resources">Tài Nguyên</Link>
-        </li>
+        </li> */}
         <li>
           <Link to="/passport">Hộ Chiếu</Link>
         </li>
