@@ -5,7 +5,8 @@ import { FaUserPlus } from "react-icons/fa6";
 import Navbar from "./Navbar";
 import HeaderButton from "../components/HeaderButton";
 import AppContext from "../contexts/AppContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -27,8 +28,11 @@ const Header = () => {
           <div className="flex gap-5">
             {user ? (
               <>
-                <div>
-                  <span className="mr-4 text-lg font-semibold text-[#333333]">
+                <div className="flex items-center gap-4">
+                  <Link to="/profile">
+                    <FaUser className="text-2xl" />
+                  </Link>
+                  <span className="text-lg font-semibold text-[#333333]">
                     Xin chào, {user.name}
                   </span>
                   <button

@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import Form from "../components/Form";
-import { rules } from "eslint-plugin-react-refresh";
 import api from "../lib/axios";
 import AppContext from "../contexts/AppContext";
 import { useNavigate } from "react-router-dom";

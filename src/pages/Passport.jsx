@@ -111,6 +111,10 @@ const Passport = () => {
                                   }
                                   alt="avatar"
                                   className="h-full w-full rounded-full object-cover shadow-lg"
+                                  onError={(e) => {
+                                    e.target.src =
+                                      "https://avatar.iran.liara.run/public/33";
+                                  }}
                                 />
                               </div>
                               <div className="mt-2 text-center">
@@ -228,6 +232,12 @@ const Passport = () => {
               <h2 className="mb-5 text-3xl font-bold">
                 Bạn cần phải làm quiz để thông tin được hiển thị
               </h2>
+              <button
+                onClick={() => navigate("/quiz")}
+                className="cursor-pointer rounded-3xl bg-[#FF9C33] px-5 py-2 text-xl font-bold text-white transition hover:bg-[#e68a00]"
+              >
+                Làm quiz ngay
+              </button>
             </div>
           </div>
         )
