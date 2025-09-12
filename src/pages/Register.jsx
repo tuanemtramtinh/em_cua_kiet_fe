@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Form from "../components/Form";
+import { rules } from "eslint-plugin-react-refresh";
+import api from "../lib/axios";
+import AppContext from "../contexts/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const { setUser } = useContext(AppContext);
+
   const listInput = [
     {
       label: "Họ và tên: ",
@@ -10,14 +17,20 @@ const Register = () => {
       placeholder: "Nhập họ và tên của bạn",
       labelStyle: "text-lg font-semibold",
       inputStyle: "rounded-2xl bg-[#FFF8CE] w-full",
+      rules: {
+        required: "Vui lòng nhập họ và tên",
+      },
     },
     {
-      label: "Số điện thoại: ",
-      type: "tel",
-      id: "phone",
-      placeholder: "Nhập số điện thoại của bạn",
+      label: "Username: ",
+      type: "text",
+      id: "username",
+      placeholder: "Nhập username của bạn",
       labelStyle: "text-lg font-semibold",
       inputStyle: "rounded-2xl bg-[#FFF8CE] w-full",
+      rules: {
+        required: "Vui lòng nhập username",
+      },
     },
     {
       label: "Email: ",
@@ -26,6 +39,35 @@ const Register = () => {
       placeholder: "Nhập email của bạn",
       labelStyle: "text-lg font-semibold",
       inputStyle: "rounded-2xl bg-[#FFF8CE] w-full",
+      rules: {
+        required: "Vui lòng nhập email",
+      },
+    },
+    {
+      label: "Ngày sinh: ",
+      type: "date",
+      id: "dob",
+      placeholder: "Nhập ngày sinh của bạn",
+      labelStyle: "text-lg font-semibold",
+      inputStyle: "rounded-2xl bg-[#FFF8CE] w-full",
+      rules: {
+        required: "Vui lòng nhập ngày sinh",
+      },
+    },
+    {
+      label: "Giới tính: ",
+      type: "select",
+      id: "sex",
+      placeholder: "Chọn giới tính",
+      labelStyle: "text-lg font-semibold",
+      inputStyle: "rounded-2xl bg-[#FFF8CE] w-full",
+      options: [
+        { label: "Nam", value: "male" },
+        { label: "Nữ", value: "female" },
+      ],
+      rules: {
+        required: "Vui lòng chọn giới tính",
+      },
     },
     {
       label: "Mật khẩu: ",
@@ -34,12 +76,24 @@ const Register = () => {
       placeholder: "Nhập mật khẩu của bạn",
       labelStyle: "text-lg font-semibold",
       inputStyle: "rounded-2xl bg-[#FFF8CE] w-full",
+      rules: {
+        required: "Vui lòng nhập mật khẩu",
+      },
     },
   ];
 
   const button = {
     style: "rounded-3xl bg-[#FF9C33] text-white",
     content: "Đăng ký",
+  };
+
+  const onSubmit = async (data) => {
+    console.log(data);
+    const response = await api.post("user/register", data);
+    const userInfo = response.data.data;
+    localStorage.setItem("userInfo", JSON.stringify(userInfo));
+    setUser(userInfo);
+    navigate("/");
   };
 
   return (
@@ -62,6 +116,7 @@ const Register = () => {
               title={"Đăng Ký"}
               listInput={listInput}
               button={button}
+              onSubmit={onSubmit}
             />
           </div>
         </div>
