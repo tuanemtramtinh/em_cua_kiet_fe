@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AppContext from "./AppContext";
 
 const AppProvider = ({ children }) => {
-  const userInfo = JSON.parse(localStorage.getItem("userInfo")) ?? null;
+  const [user, setUser] = useState(() => {
+    return JSON.parse(localStorage.getItem("userInfo")) ?? null;
+  });
 
-  const [user, setUser] = useState(userInfo);
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo")) ?? null;
+    setUser(userInfo);
+  }, []);
 
   const contextValue = {
     user,
