@@ -1,18 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const Result = ({ totalScore }) => {
-  useEffect(() => {
-    const userId = localStorage.getItem('userId');
-    if (userId) {
-      fetch(`/user/assign-type/${userId}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ point: totalScore }),
-      }).catch((err) => console.error('Failed to assign type:', err));
-    }
-  }, [totalScore]);
-
-  
 
   let group = '';
   let icon = '';
