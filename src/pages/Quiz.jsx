@@ -63,8 +63,7 @@ const Quiz = () => {
   };
 
   const submitScoreToBackend = async (totalScore) => {
-    console.log(user.id);
-    const response = await api.post(`user/assign-type/${user.id}`, {
+    const response = await api.post(`user/assign-type/${user._id}`, {
       point: totalScore,
     });
     const userInfo = response.data.data;

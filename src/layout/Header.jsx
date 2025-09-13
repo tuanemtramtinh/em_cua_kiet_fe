@@ -18,8 +18,6 @@ const Header = () => {
     navigate("/");
   };
 
-  console.log(user);
-
   return (
     <>
       <header className="bg-[#D8E49A]">
