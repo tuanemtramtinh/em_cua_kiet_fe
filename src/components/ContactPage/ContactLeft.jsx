@@ -7,7 +7,7 @@ const ContactLeft = () => {
         <div className="mt-4 space-y-6">
             <p className="flex items-center text-xl"><span className="mr-2">📍</span> 218-216 Nguyễn Tất Thành, phường Xóm Chiếu, TPHCM </p>
             <p className="flex items-center text-xl"><span className="mr-2">📞</span> (+84) 825 377 706</p>
-            <p className="flex items-center text-xl"><span className="mr-2">✉️</span> phuonggiakhai@gmail.com</p>
+            <p className="flex items-center text-xl"><span className="mr-2">✉️</span> eculturepassportvd@gmail.com</p>
       </div>
     </div>
   );
