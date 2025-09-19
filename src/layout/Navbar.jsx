@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import AppContext from "../contexts/AppContext";
 
 const Navbar = () => {
+  const { user } = useContext(AppContext);
+
   return (
     <div className="bg-[#FF9C33] py-3 font-bold text-white">
       <ul className="container mx-auto flex justify-between text-xl">
@@ -11,9 +14,6 @@ const Navbar = () => {
         <li>
           <Link to="/quiz">Trắc Nghiệm</Link>
         </li>
-        {/* <li>
-          <Link to="/resources">Tài Nguyên</Link>
-        </li> */}
         <li>
           <Link to="/passport">Hộ Chiếu</Link>
         </li>
@@ -23,6 +23,11 @@ const Navbar = () => {
         <li>
           <Link to="/contact">Liên Hệ</Link>
         </li>
+        {user && user.username === "admin" && (
+          <li>
+            <Link to="/admin">Admin</Link>
+          </li>
+        )}
       </ul>
     </div>
   );

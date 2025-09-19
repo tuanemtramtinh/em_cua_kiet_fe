@@ -58,7 +58,7 @@ const Login = () => {
               alt=""
             />
             <img
-              className="absolute bottom-15 left-60 w-[150px]"
+              className="absolute bottom-5 left-60 w-[150px]"
               src="/Shape2.png"
               alt=""
             />

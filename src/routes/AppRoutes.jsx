@@ -11,6 +11,7 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
 import Video from "../pages/Video";
 import Profile from "../pages/Profile";
+import Admin from "../pages/Admin";
 
 const AppRoutes = () => {
   return (
@@ -26,6 +27,7 @@ const AppRoutes = () => {
         <Route path="login" element={<Login />} />
         <Route path="video" element={<Video />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="admin" element={<Admin />} />
       </Route>
     </Routes>
   );
