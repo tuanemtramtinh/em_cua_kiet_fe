@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -11,6 +11,30 @@ import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper/modules";
 
 const Video = () => {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const iframeRefs = useRef([]);
+
+  // Function để dừng video
+  const stopVideo = (index) => {
+    const iframe = iframeRefs.current[index];
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage(
+        '{"event":"command","func":"pauseVideo","args":""}',
+        "*",
+      );
+    }
+  };
+
+  // Handler khi slide thay đổi
+  const handleSlideChange = (swiper) => {
+    const newIndex = swiper.realIndex;
+    if (newIndex !== activeSlide) {
+      // Dừng video của slide trước
+      stopVideo(activeSlide);
+      setActiveSlide(newIndex);
+    }
+  };
+
   const videoList = [
     {
       title: "Video về người kết nối",
@@ -45,17 +69,21 @@ const Video = () => {
                 navigation={true}
                 modules={[Pagination, Navigation]}
                 className="mySwiper"
+                onSlideChange={handleSlideChange}
               >
                 {videoList.map((video, index) => (
-                  <SwiperSlide>
-                    <div key={index}>
+                  <SwiperSlide key={index}>
+                    <div>
                       <h2 className="mb-5 text-center text-2xl font-bold">
                         {video.title}
                       </h2>
                       <iframe
+                        ref={(el) => {
+                          if (el) iframeRefs.current[index] = el;
+                        }}
                         width="560"
                         height="315"
-                        src={video.url}
+                        src={`${video.url}&enablejsapi=1`}
                         title="YouTube video player"
                         // @ts-ignore
                         frameborder="0"
