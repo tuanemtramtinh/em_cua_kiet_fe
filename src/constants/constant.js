@@ -1,2 +1,2 @@
-const apiUrl = "https://api.khamphabansacso.com";
+const apiUrl = "https://api.khamphabansacso.com/";
 export default apiUrl;
