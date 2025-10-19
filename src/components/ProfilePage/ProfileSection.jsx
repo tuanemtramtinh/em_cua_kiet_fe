@@ -1,19 +1,19 @@
-import React, { useState, useContext, useEffect } from 'react';
-import LeftProfileSection from './LeftProfileSection';
-import RightProfileSection from './RightProfileSection';
-import AppContext from '../../contexts/AppContext';
-import api from '../../lib/axios';
+import React, { useState, useContext, useEffect } from "react";
+import LeftProfileSection from "./LeftProfileSection";
+import RightProfileSection from "./RightProfileSection";
+import AppContext from "../../contexts/AppContext";
+import api from "../../lib/axios";
 
 const ProfileSection = () => {
   const { user, setUser } = useContext(AppContext);
   const [formData, setFormData] = useState({
-    fullName: '',
-    dob: '',
-    email: '',
-    username: '',
-    sex: '',
-    avatar: '',
-    hobby: '',
+    fullName: "",
+    dob: "",
+    email: "",
+    username: "",
+    sex: "",
+    avatar: "",
+    hobby: "",
   });
   const [editMode, setEditMode] = useState(false);
   const [avatarFile, setAvatarFile] = useState(null);
@@ -22,13 +22,13 @@ const ProfileSection = () => {
   useEffect(() => {
     if (user) {
       setFormData({
-        fullName: user.fullName || user.name || '',
-        dob: user.dob || user.dateOfBirth || '',
-        email: user.email || '',
-        username: user.username || '',
-        sex: user.sex || user.gender || '',
-        avatar: user.avatar || '',
-        hobby: user.hobby || '',
+        fullName: user.fullName || user.name || "",
+        dob: user.dob || user.dateOfBirth || "",
+        email: user.email || "",
+        username: user.username || "",
+        sex: user.sex || user.gender || "",
+        avatar: user.avatar || "",
+        hobby: user.hobby || "",
       });
     }
   }, [user]);
@@ -46,7 +46,7 @@ const ProfileSection = () => {
       reader.onload = (ev) => {
         setFormData((prev) => ({
           ...prev,
-          avatar: typeof ev.target.result === 'string' ? ev.target.result : ''
+          avatar: typeof ev.target.result === "string" ? ev.target.result : "",
         }));
       };
       reader.readAsDataURL(e.target.files[0]);
@@ -61,49 +61,54 @@ const ProfileSection = () => {
     setLoading(true);
     try {
       const data = new FormData();
-      data.append('name', formData.fullName);
-      data.append('dob', formData.dob);
-      data.append('email', formData.email);
-      data.append('sex', formData.sex);
-      data.append('hobby', formData.hobby);
+      data.append("name", formData.fullName);
+      data.append("dob", formData.dob);
+      data.append("email", formData.email);
+      data.append("sex", formData.sex);
+      data.append("hobby", formData.hobby);
       if (avatarFile) {
-        data.append('avatar', avatarFile);
+        data.append("avatar", avatarFile);
       }
       // Debug log
-      console.log('Username for update:', formData.username);
-      console.log('Endpoint:', `/user/update-profile/${formData.username}`);
+      console.log("Username for update:", formData.username);
+      console.log("Endpoint:", `/user/update-profile/${formData.username}`);
       if (!formData.username) {
-        alert('Username không hợp lệ!');
+        alert("Username không hợp lệ!");
         setLoading(false);
         return;
       }
-      const res = await api.post(`/user/update-profile/${formData.username}`, data, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
+      const res = await api.post(
+        `/user/update-profile/${formData.username}`,
+        data,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        },
+      );
       const updatedUser = res.data.data.user;
+      // console.log(updatedUser);
       setUser(updatedUser);
-      localStorage.setItem('userInfo', JSON.stringify(updatedUser));
+      localStorage.setItem("userInfo", JSON.stringify(updatedUser));
       setEditMode(false);
-      setAvatarFile(null);
+      setAvatarFile(avatarFile);
 
       setFormData({
-        fullName: updatedUser.fullName || updatedUser.name || '',
-        dob: updatedUser.dob || updatedUser.dateOfBirth || '',
-        email: updatedUser.email || '',
-        username: updatedUser.username || '',
-        sex: updatedUser.sex || updatedUser.gender || '',
-        avatar: updatedUser.avatar || '',
-        hobby: updatedUser.hobby || '',
+        fullName: updatedUser.fullName || updatedUser.name || "",
+        dob: updatedUser.dob || updatedUser.dateOfBirth || "",
+        email: updatedUser.email || "",
+        username: updatedUser.username || "",
+        sex: updatedUser.sex || updatedUser.gender || "",
+        avatar: updatedUser.avatar || "",
+        hobby: updatedUser.hobby || "",
       });
     } catch (err) {
-      alert('Cập nhật thông tin thất bại!');
+      alert("Cập nhật thông tin thất bại!");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="flex justify-between max-w-6xl mx-auto">
+    <div className="mx-auto flex max-w-6xl justify-between">
       <div>
         <LeftProfileSection
           formData={formData}
