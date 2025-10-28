@@ -25,21 +25,13 @@ const Admin = () => {
       <div className="container mx-auto py-10">
         <h2 className="mb-10 text-4xl font-bold">Admin Page</h2>
         <div className="flex justify-between gap-10">
-          <div className="flex-1 rounded-md bg-white p-4 shadow-2xl">
+          <div className="flex-3 rounded-md bg-white p-4 shadow-2xl">
             <h3 className="mb-4 text-2xl font-bold">Danh sách người dùng</h3>
             <div>
               <UserItem />
             </div>
           </div>
-          <div className="flex-2 rounded-md bg-white p-4 shadow-2xl">
-            <h3 className="mb-4 text-2xl font-bold">
-              Số liệu thống kê người dùng
-            </h3>
-            <div className="mb-4 border-b border-gray-300 pb-2">
-              <p>Người kết nối: </p>
-              <p>Người sáng tạo: </p>
-              <p>Người quan sát: </p>
-            </div>
+          <div className="flex-1 rounded-md bg-white p-4 shadow-2xl">
             <ChartItem />
           </div>
         </div>
