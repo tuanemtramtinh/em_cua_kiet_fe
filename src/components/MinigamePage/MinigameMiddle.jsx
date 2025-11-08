@@ -30,12 +30,12 @@ const MinigameMiddle = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <h3 className="text-2xl font-bold mb-6 text-[#ff9c33]">THÊM HÌNH ĐỂ HOÀN THÀNH TRÒ CHƠI</h3>
+      <h3 className="text-2xl font-bold mb-6 text-[#ff9c33]">HÃY LƯU LẠI NHỮNG KHOẢNH KHẮC ĐẸP CỦA BẠN</h3>
       
-      <div className="grid grid-cols-2 gap-8 w-full max-w-4xl">
+      <div className="grid grid-cols-2 gap-16 w-full max-w-6xl">
         {/* First Image Upload Section */}
         <div className="flex flex-col items-center">
-          <label className="w-full aspect-square border-4 border-[#ff9c33] rounded-lg overflow-hidden bg-white relative cursor-pointer hover:border-[#e88e2e] transition-colors">
+          <label className="w-full aspect-[16/9] border-4 border-[#ff9c33] rounded-lg overflow-hidden bg-white relative cursor-pointer hover:border-[#e88e2e] transition-colors">
             <input
               type="file"
               accept="image/*"
@@ -60,7 +60,7 @@ const MinigameMiddle = () => {
 
         {/* Second Image Upload Section */}
         <div className="flex flex-col items-center">
-          <label className="w-full aspect-square border-4 border-[#ff9c33] rounded-lg overflow-hidden bg-white relative cursor-pointer hover:border-[#e88e2e] transition-colors">
+          <label className="w-full aspect-[16/9] border-4 border-[#ff9c33] rounded-lg overflow-hidden bg-white relative cursor-pointer hover:border-[#e88e2e] transition-colors">
             <input
               type="file"
               accept="image/*"
