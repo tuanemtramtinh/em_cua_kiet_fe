@@ -23,6 +23,9 @@ const Navbar = () => {
         <li>
           <Link to="/contact">Liên Hệ</Link>
         </li>
+        <li>
+          <Link to="/minigame">Minigame</Link>
+        </li>
         {user && user.username === "admin" && (
           <li>
             <Link to="/admin">Admin</Link>

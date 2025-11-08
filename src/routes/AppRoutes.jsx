@@ -12,6 +12,7 @@ import Login from "../pages/Login";
 import Video from "../pages/Video";
 import Profile from "../pages/Profile";
 import Admin from "../pages/Admin";
+import Minigame from "../pages/Minigame";
 
 const AppRoutes = () => {
   return (
@@ -28,6 +29,7 @@ const AppRoutes = () => {
         <Route path="video" element={<Video />} />
         <Route path="profile" element={<Profile />} />
         <Route path="admin" element={<Admin />} />
+        <Route path="minigame" element={<Minigame />} />
       </Route>
     </Routes>
   );
