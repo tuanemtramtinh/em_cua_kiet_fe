@@ -166,11 +166,13 @@ const Passport = () => {
                             ĐỊNH DANH BẢN THÂN
                           </h2>
                           <div className="flex h-full flex-col items-center justify-center gap-5">
-                            <h2 className="font-semibold">BẠN CHÍNH LÀ</h2>
-                            <div className="text-3xl font-bold text-[#FF9C33] italic">
+                            <h2 className="text-4xl font-semibold">
+                              BẠN CHÍNH LÀ
+                            </h2>
+                            <div className="text-5xl font-bold text-[#FF9C33] italic">
                               {user.type}
                             </div>
-                            <div className="text-center text-sm">
+                            <div className="text-center text-xl">
                               LƯỚT QUA TRANG KẾ ĐỂ XEM VIDEO VÀ CẨM NANG
                             </div>
                           </div>
@@ -183,7 +185,7 @@ const Passport = () => {
                         <div className="flex h-full w-full flex-col justify-between rounded-2xl bg-[#fbf9d7] p-5">
                           <h2 className="text-2xl font-bold">VIDEO</h2>
                           <div className="">
-                            <div className="mb-5 text-xl">
+                            <div className="mb-5 text-2xl">
                               Bạn hãy xem video để hiểu rõ hơn về tính cách bản
                               thân mình nhé
                             </div>
@@ -204,17 +206,16 @@ const Passport = () => {
                     <SwiperSlide>
                       <div className="flex h-full w-full items-center justify-center rounded-2xl bg-[#08083C] p-7">
                         <div className="flex h-full w-full flex-col justify-between rounded-2xl bg-[#fbf9d7] p-5">
-                          <h2 className="mb-20 text-2xl font-bold">CẨM NANG</h2>
+                          <h2 className="mb-10 text-2xl font-bold">CẨM NANG</h2>
                           <div className="flex flex-col items-center text-center text-lg">
                             <a className="mb-8" href={pdfLink}>
                               <IoDocumentTextSharp className="text-8xl hover:text-blue-500" />
                             </a>
-                            <div className="text-xl">
+                            <div className="text-3xl">
                               Bạn hãy bấm vào icon để tải cẩm nang về{" "}
                               <span className="font-bold text-[#FF9C33] italic">
                                 {user.type}
                               </span>{" "}
-                              nhé
                             </div>
                           </div>
                           <div>Trang 4</div>

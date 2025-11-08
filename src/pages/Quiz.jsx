@@ -51,6 +51,7 @@ const Quiz = () => {
         (sum, score) => sum + (score || 0),
         0,
       );
+      console.log(totalScore);
       await submitScoreToBackend(totalScore);
       setShowResult(true);
     }
