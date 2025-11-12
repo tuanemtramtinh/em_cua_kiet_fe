@@ -24,14 +24,14 @@ const Admin = () => {
     <div className="bg-[url(/background.svg)] bg-cover bg-center">
       <div className="container mx-auto py-10">
         <h2 className="mb-10 text-4xl font-bold">Admin Page</h2>
-        <div className="flex justify-between gap-10">
+        <div className="flex items-start justify-between gap-10">
           <div className="flex-3 rounded-md bg-white p-4 shadow-2xl">
             <h3 className="mb-4 text-2xl font-bold">Danh sách người dùng</h3>
             <div>
               <UserItem />
-            </div>
+            </div>  
           </div>
-          <div className="flex-1 rounded-md bg-white p-4 shadow-2xl">
+          <div className="inline-flex flex-1 rounded-md bg-white p-4 shadow-2xl">
             <ChartItem />
           </div>
         </div>

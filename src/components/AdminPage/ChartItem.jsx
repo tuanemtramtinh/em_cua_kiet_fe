@@ -134,7 +134,7 @@ const ChartItem = () => {
           </BarChart>
         )}
         {chartType === "circle" && (
-          <PieChart width={700} height={400}>
+          <PieChart width={750} height={400}>
             <Pie
               activeShape={{
                 fill: "red",

@@ -11,14 +11,17 @@ const UserItem = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [filterType, setFilterType] = useState("");
 
-  const fetchUsers = async (p = page, l = limit) => {
+  const fetchUsers = async (p = page, l = limit, type = filterType) => {
     try {
       setLoading(true);
       setError("");
-      const res = await api.get("/user/list-user", {
-        params: { page: p, limit: l },
-      });
+      const params = { page: p, limit: l };
+      if (type) {
+        params.type = type;
+      }
+      const res = await api.get("/user/list-user", { params });
       const data = res.data;
       if (data?.status !== "success") {
         throw new Error(data?.message || "Fetch users failed");
@@ -38,7 +41,13 @@ const UserItem = () => {
   };
 
   useEffect(() => {
-    fetchUsers(page, limit);
+    setPage(1); // Reset về trang 1 khi filter thay đổi
+    fetchUsers(1, limit, filterType);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filterType]);
+
+  useEffect(() => {
+    fetchUsers(page, limit, filterType);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, limit]);
 
@@ -49,42 +58,63 @@ const UserItem = () => {
     <div>
       <div className="mb-4 flex items-center justify-between gap-4">
         <div className="text-sm text-gray-600">
-          Trang {page}/{totalPages} • Tổng {total} người dùng
+          <div>
+            Trang {page}/{totalPages}
+          </div>
+          <div>Tổng {total} người dùng</div>
         </div>
-        <div className="flex items-center gap-2">
-          <label className="text-sm text-gray-700">Mỗi trang:</label>
-          <select
-            className="rounded-md border px-2 py-1"
-            value={limit}
-            onChange={(e) => {
-              setPage(1);
-              setLimit(parseInt(e.target.value, 10));
-            }}
-          >
-            {[5, 10, 20, 50, 100].map((n) => (
-              <option key={n} value={n}>
-                {n}
-              </option>
-            ))}
-          </select>
-          <button
-            className={`rounded-md border px-3 py-1 ${
-              !canPrev ? "cursor-not-allowed opacity-50" : ""
-            }`}
-            disabled={!canPrev}
-            onClick={() => canPrev && setPage((p) => p - 1)}
-          >
-            Trước
-          </button>
-          <button
-            className={`rounded-md border px-3 py-1 ${
-              !canNext ? "cursor-not-allowed opacity-50" : ""
-            }`}
-            disabled={!canNext}
-            onClick={() => canNext && setPage((p) => p + 1)}
-          >
-            Sau
-          </button>
+        <div className="flex flex-col items-center gap-5">
+          <div className="flex items-center gap-2">
+            <label className="text-sm text-gray-700">Lọc theo loại:</label>
+            <select
+              className="rounded-md border px-2 py-1"
+              value={filterType}
+              onChange={(e) => {
+                setFilterType(e.target.value);
+              }}
+            >
+              <option value="">Tất cả</option>
+              <option value="Người quan sát">Người quan sát</option>
+              <option value="Người kết nối">Người kết nối</option>
+              <option value="Người sáng tạo">Người sáng tạo</option>
+              <option value="khong">Chưa khảo sát</option>
+            </select>
+          </div>
+          <div className="flex items-center gap-2">
+            <label className="text-sm text-gray-700">Mỗi trang:</label>
+            <select
+              className="rounded-md border px-2 py-1"
+              value={limit}
+              onChange={(e) => {
+                setPage(1);
+                setLimit(parseInt(e.target.value, 10));
+              }}
+            >
+              {[5, 10, 20, 50, 100].map((n) => (
+                <option key={n} value={n}>
+                  {n}
+                </option>
+              ))}
+            </select>
+            <button
+              className={`rounded-md border px-3 py-1 ${
+                !canPrev ? "cursor-not-allowed opacity-50" : ""
+              }`}
+              disabled={!canPrev}
+              onClick={() => canPrev && setPage((p) => p - 1)}
+            >
+              Trước
+            </button>
+            <button
+              className={`rounded-md border px-3 py-1 ${
+                !canNext ? "cursor-not-allowed opacity-50" : ""
+              }`}
+              disabled={!canNext}
+              onClick={() => canNext && setPage((p) => p + 1)}
+            >
+              Sau
+            </button>
+          </div>
         </div>
       </div>
 
