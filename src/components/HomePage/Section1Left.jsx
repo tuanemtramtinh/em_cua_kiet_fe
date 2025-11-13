@@ -15,7 +15,7 @@ const Section1Left = () => {
         </div>
       </div>
       <p className="mb-10 text-justify text-xl font-semibold">
-        "Hộ chiếu Văn hóa Số" là nền tảng giúp bạn khám phá vai trò, hành vi và
+        "Hộ chiếu Bản sắc Số" là nền tảng giúp bạn khám phá vai trò, hành vi và
         giá trị cá nhân trong thế giới số. Tham gia trắc nghiệm, rèn luyện kỹ
         năng công dân số, tích lũy dấu mốc hành trình và nhận chứng nhận hoàn
         thành.

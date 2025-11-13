@@ -16,7 +16,7 @@ const Question1 = ({ onAnswer }) => {
           onClick={() => handleClick(0)}
           className={`px-6 py-3 rounded-full border-2 font-bold text-lg ${selected === 0 ? 'bg-orange-500 text-white border-orange-500' : 'bg-yellow-200 border-yellow-400'}`}
         >
-          Không có/ít khi
+          Không
         </button>
         <button
           onClick={() => handleClick(1)}
@@ -28,7 +28,7 @@ const Question1 = ({ onAnswer }) => {
           onClick={() => handleClick(2)}
           className={`px-6 py-3 rounded-full border-2 font-bold text-lg ${selected === 2 ? 'bg-orange-500 text-white border-orange-500' : 'bg-yellow-200 border-yellow-400'}`}
         >
-          Thường xuyên
+          Có
         </button>
       </div>
     </div>
