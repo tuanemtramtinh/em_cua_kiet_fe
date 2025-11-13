@@ -46,7 +46,7 @@ const Video = () => {
     },
     {
       title: "Video về người quan sát",
-      url: "https://www.youtube.com/embed/BRUFc5rCMn0?si=xLsKFEdk61kHaYyR",
+      url: "https://www.youtube.com/embed/08gZG4kDqPE?si=PWhznq_vyv28Xtlx",
     },
   ];
 

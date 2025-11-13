@@ -6,7 +6,7 @@ const Section1Right = () => {
       <img className="z-0 w-full" src="/Shape1.svg" alt="Shape Background" />
       <img
         className="absolute top-[15%] left-[20%] z-10 w-3/5"
-        src="/PassportIllustration.svg"
+        src="/PassportIllustration.png"
         alt="Passport Illustration"
       />
       <img
