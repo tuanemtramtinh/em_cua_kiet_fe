@@ -16,19 +16,19 @@ const Question8 = ({ onAnswer }) => {
           onClick={() => handleClick(0)}
           className={`px-6 py-3 rounded-full border-2 font-bold text-lg ${selected === 0 ? 'bg-orange-500 text-white border-orange-500' : 'bg-yellow-200 border-yellow-400'}`}
         >
-          Không có/ít khi
+          Đa dạng
         </button>
         <button
           onClick={() => handleClick(1)}
           className={`px-6 py-3 rounded-full border-2 font-bold text-lg ${selected === 1 ? 'bg-orange-500 text-white border-orange-500' : 'bg-yellow-200 border-yellow-400'}`}
         >
-          Bình thường
+          Người thân
         </button>
         <button
           onClick={() => handleClick(2)}
           className={`px-6 py-3 rounded-full border-2 font-bold text-lg ${selected === 2 ? 'bg-orange-500 text-white border-orange-500' : 'bg-yellow-200 border-yellow-400'}`}
         >
-          Thường xuyên
+          Người nổi tiếng
         </button>
       </div>
     </div>

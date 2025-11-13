@@ -4,7 +4,7 @@ const ContactLeft = () => {
   return (
     <div className="flex-1">
       <h2 className="my-6 text-center text-8xl font-bold text-[#FF9C33]">
-        HỘ CHIẾU VĂN HÓA SỐ
+        HỘ CHIẾU BẢN SẮC SỐ
       </h2>
       <div className="mt-4 space-y-6">
         <p className="flex items-center text-xl">
