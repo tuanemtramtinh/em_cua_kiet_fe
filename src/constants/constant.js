@@ -1,2 +1,2 @@
-const apiUrl = "https://api.khamphabansacso.com";
+const apiUrl = "http://localhost:3000";
 export default apiUrl;
