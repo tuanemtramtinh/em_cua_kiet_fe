@@ -74,6 +74,40 @@ const MinigameMiddle = () => {
     return "";
   };
 
+  const getTaskDescriptions = () => {
+    if (!user?.type) {
+      return {
+        task1: "Nhiệm vụ 1",
+        task2: "Nhiệm vụ 2",
+      };
+    }
+
+    const userType = user.type;
+
+    if (userType === "Người sáng tạo") {
+      return {
+        task1: "Trung tâm thương mại (vui chơi, giải trí, mua sắm,…)",
+        task2:
+          "Lễ hội ngoài trời/phố đi bộ/hội chợ/…(tụ họp bạn bè, gia đình, vui chơi,…)",
+      };
+    } else if (userType === "Người kết nối") {
+      return {
+        task1: "Chia sẻ lại một bài viết mang thông điệp tích cực",
+        task2: "Đăng bài đăng nói về sở thích cá nhân tích cực",
+      };
+    } else if (userType === "Người quan sát") {
+      return {
+        task1: "Chia sẻ về kinh nghiệm học tập của bản thân",
+        task2: "Chia sẻ cảm xúc của ngày hôm đó trên trang cá nhân",
+      };
+    }
+
+    return {
+      task1: "Nhiệm vụ 1",
+      task2: "Nhiệm vụ 2",
+    };
+  };
+
   const canUpload = () => {
     if (!userInfo) return true;
     const imageCount = uploadedImages.length;
@@ -176,6 +210,26 @@ const MinigameMiddle = () => {
 
   const statusMessage = getStatusMessage();
   const allowUpload = canUpload();
+  const taskDescriptions = getTaskDescriptions();
+
+  // Kiểm tra xem người dùng đã khảo sát chưa (sử dụng user từ context)
+  const hasCompletedQuiz = () => {
+    if (!user) {
+      return false;
+    }
+    const userType = user.type;
+
+    // Kiểm tra nếu type là undefined, null, rỗng, hoặc "khong" thì chưa làm quiz
+    if (!userType || userType === "" || userType === "khong") {
+      return false;
+    }
+
+    // Nếu type là một trong các giá trị hợp lệ thì đã làm quiz
+    const validTypes = ["Người sáng tạo", "Người kết nối", "Người quan sát"];
+    return validTypes.includes(userType);
+  };
+
+  const completedQuiz = hasCompletedQuiz();
 
   return (
     <div className="flex flex-col items-center">
@@ -183,7 +237,13 @@ const MinigameMiddle = () => {
         HÃY LƯU LẠI NHỮNG KHOẢNH KHẮC ĐẸP CỦA BẠN
       </h3>
 
-      {statusMessage && (
+      {!completedQuiz && (
+        <div className="mb-6 rounded-md border border-orange-200 bg-orange-50 px-6 py-4 text-center text-lg font-semibold text-orange-700">
+          Bạn cần phải làm quiz để chơi Minigame
+        </div>
+      )}
+
+      {completedQuiz && statusMessage && (
         <div
           className={`mb-4 rounded-md px-4 py-2 text-center font-semibold ${
             statusMessage === "Đã duyệt"
@@ -197,119 +257,125 @@ const MinigameMiddle = () => {
         </div>
       )}
 
-      <div className="grid w-full max-w-6xl grid-cols-2 gap-16">
-        {/* First Image Upload Section */}
-        <div className="flex flex-col items-center">
-          <label
-            className={`relative aspect-[16/9] w-full overflow-hidden rounded-lg border-4 bg-white transition-colors ${
-              allowUpload
-                ? "cursor-pointer border-[#ff9c33] hover:border-[#e88e2e]"
-                : "cursor-not-allowed border-gray-300 opacity-60"
-            }`}
-          >
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => handleImageUpload(e, "image1")}
-              disabled={!allowUpload}
-              className="hidden"
-            />
-            {previews.image1 ? (
-              <img
-                src={previews.image1}
-                alt="Preview 1"
-                className="h-full w-full object-contain"
-                onError={(e) => {
-                  if (e.target instanceof HTMLImageElement) {
-                    e.target.src =
-                      "https://placehold.co/600x400?text=Image+Error&font=roboto";
-                  }
-                }}
+      {completedQuiz && (
+        <div className="grid w-full max-w-6xl grid-cols-2 gap-16">
+          {/* First Image Upload Section */}
+          <div className="flex flex-col items-center">
+            <label
+              className={`relative aspect-[16/9] w-full overflow-hidden rounded-lg border-4 bg-white transition-colors ${
+                allowUpload
+                  ? "cursor-pointer border-[#ff9c33] hover:border-[#e88e2e]"
+                  : "cursor-not-allowed border-gray-300 opacity-60"
+              }`}
+            >
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => handleImageUpload(e, "image1")}
+                disabled={!allowUpload}
+                className="hidden"
               />
-            ) : (
-              <div className="flex h-full w-full flex-col items-center justify-center text-2xl font-bold text-[#ff9c33]">
-                <span>PREVIEW</span>
-                <span className="mt-2 text-base">
-                  {allowUpload ? "Click để thêm hình" : "Đã upload đủ ảnh"}
-                </span>
-              </div>
-            )}
-          </label>
-          <p className="mt-4 text-center font-medium text-gray-700">
-            Nhiệm vụ 1
-          </p>
-        </div>
+              {previews.image1 ? (
+                <img
+                  src={previews.image1}
+                  alt="Preview 1"
+                  className="h-full w-full object-contain"
+                  onError={(e) => {
+                    if (e.target instanceof HTMLImageElement) {
+                      e.target.src =
+                        "https://placehold.co/600x400?text=Image+Error&font=roboto";
+                    }
+                  }}
+                />
+              ) : (
+                <div className="flex h-full w-full flex-col items-center justify-center text-2xl font-bold text-[#ff9c33]">
+                  <span>PREVIEW</span>
+                  <span className="mt-2 text-base">
+                    {allowUpload ? "Click để thêm hình" : "Đã upload đủ ảnh"}
+                  </span>
+                </div>
+              )}
+            </label>
+            <p className="mt-4 text-center text-sm font-medium text-gray-700">
+              {taskDescriptions.task1}
+            </p>
+          </div>
 
-        {/* Second Image Upload Section */}
-        <div className="flex flex-col items-center">
-          <label
-            className={`relative aspect-[16/9] w-full overflow-hidden rounded-lg border-4 bg-white transition-colors ${
-              allowUpload
-                ? "cursor-pointer border-[#ff9c33] hover:border-[#e88e2e]"
-                : "cursor-not-allowed border-gray-300 opacity-60"
-            }`}
-          >
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => handleImageUpload(e, "image2")}
-              disabled={!allowUpload}
-              className="hidden"
-            />
-            {previews.image2 ? (
-              <img
-                src={previews.image2}
-                alt="Preview 2"
-                className="h-full w-full object-contain"
-                onError={(e) => {
-                  if (e.target instanceof HTMLImageElement) {
-                    e.target.src =
-                      "https://placehold.co/600x400?text=Image+Error&font=roboto";
-                  }
-                }}
+          {/* Second Image Upload Section */}
+          <div className="flex flex-col items-center">
+            <label
+              className={`relative aspect-[16/9] w-full overflow-hidden rounded-lg border-4 bg-white transition-colors ${
+                allowUpload
+                  ? "cursor-pointer border-[#ff9c33] hover:border-[#e88e2e]"
+                  : "cursor-not-allowed border-gray-300 opacity-60"
+              }`}
+            >
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => handleImageUpload(e, "image2")}
+                disabled={!allowUpload}
+                className="hidden"
               />
-            ) : (
-              <div className="flex h-full w-full flex-col items-center justify-center text-2xl font-bold text-[#ff9c33]">
-                <span>PREVIEW</span>
-                <span className="mt-2 text-base">
-                  {allowUpload ? "Click để thêm hình" : "Đã upload đủ ảnh"}
-                </span>
-              </div>
-            )}
-          </label>
-          <p className="mt-4 text-center font-medium text-gray-700">
-            Nhiệm vụ 2
-          </p>
+              {previews.image2 ? (
+                <img
+                  src={previews.image2}
+                  alt="Preview 2"
+                  className="h-full w-full object-contain"
+                  onError={(e) => {
+                    if (e.target instanceof HTMLImageElement) {
+                      e.target.src =
+                        "https://placehold.co/600x400?text=Image+Error&font=roboto";
+                    }
+                  }}
+                />
+              ) : (
+                <div className="flex h-full w-full flex-col items-center justify-center text-2xl font-bold text-[#ff9c33]">
+                  <span>PREVIEW</span>
+                  <span className="mt-2 text-base">
+                    {allowUpload ? "Click để thêm hình" : "Đã upload đủ ảnh"}
+                  </span>
+                </div>
+              )}
+            </label>
+            <p className="mt-4 text-center text-sm font-medium text-gray-700">
+              {taskDescriptions.task2}
+            </p>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Submit Button */}
-      <div className="mt-8 flex flex-col items-center gap-4">
-        {error && (
-          <div className="rounded-md border border-red-200 bg-red-50 px-4 py-2 text-red-600">
-            {error}
-          </div>
-        )}
-        {success && (
-          <div className="rounded-md border border-green-200 bg-green-50 px-4 py-2 text-green-600">
-            {success}
-          </div>
-        )}
-        <button
-          onClick={handleSubmit}
-          disabled={loading || !images.image1 || !images.image2 || !allowUpload}
-          className="rounded-lg bg-[#ff9c33] px-8 py-3 text-lg font-bold text-white transition-colors hover:bg-[#e88e2e] disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          {loading ? (
-            <div className="flex items-center gap-2">
-              <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
-              <span>Đang tải lên...</span>
+      {completedQuiz && (
+        <div className="mt-8 flex flex-col items-center gap-4">
+          {error && (
+            <div className="rounded-md border border-red-200 bg-red-50 px-4 py-2 text-red-600">
+              {error}
             </div>
-          ) : (
-            "Tải ảnh lên"
           )}
-        </button>
-      </div>
+          {success && (
+            <div className="rounded-md border border-green-200 bg-green-50 px-4 py-2 text-green-600">
+              {success}
+            </div>
+          )}
+          <button
+            onClick={handleSubmit}
+            disabled={
+              loading || !images.image1 || !images.image2 || !allowUpload
+            }
+            className="rounded-lg bg-[#ff9c33] px-8 py-3 text-lg font-bold text-white transition-colors hover:bg-[#e88e2e] disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {loading ? (
+              <div className="flex items-center gap-2">
+                <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
+                <span>Đang tải lên...</span>
+              </div>
+            ) : (
+              "Tải ảnh lên"
+            )}
+          </button>
+        </div>
+      )}
     </div>
   );
 };
