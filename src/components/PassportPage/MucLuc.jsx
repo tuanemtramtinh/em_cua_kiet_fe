@@ -21,6 +21,10 @@ const MucLuc = () => {
           <span>Cẩm nang</span>
           <span>Trang 4</span>
         </li>
+        <li className="flex justify-between">
+          <span>Chứng nhận</span>
+          <span>Trang 5</span>
+        </li>
       </ul>
     </div>
   );
