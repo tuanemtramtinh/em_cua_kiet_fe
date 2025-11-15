@@ -24,14 +24,14 @@ const MinigameMiddle = () => {
 
   useEffect(() => {
     const fetchUserImages = async () => {
-      if (!user?._id) {
+      if (!user?.id) {
         setFetching(false);
         return;
       }
 
       try {
         setFetching(true);
-        const res = await api.get(`/user/info/${user._id}`);
+        const res = await api.get(`/user/info/${user.id}`);
         if (res.data?.status === "success") {
           setUserInfo(res.data.data?.user || null);
           const userImages = res.data.data?.images || [];
@@ -58,7 +58,7 @@ const MinigameMiddle = () => {
     };
 
     fetchUserImages();
-  }, [user?._id]);
+  }, [user?.id]);
 
   const getStatusMessage = () => {
     if (!userInfo) return "";
@@ -142,7 +142,7 @@ const MinigameMiddle = () => {
       return;
     }
 
-    if (!user?._id) {
+    if (!user?.id) {
       setError("Vui lòng đăng nhập để tải ảnh lên");
       return;
     }
@@ -155,7 +155,7 @@ const MinigameMiddle = () => {
       const formData = new FormData();
       formData.append("images", images.image1);
       formData.append("images", images.image2);
-      formData.append("userId", user._id);
+      formData.append("userId", user.id);
 
       const res = await api.post("/image/upload", formData, {
         headers: {
@@ -169,7 +169,8 @@ const MinigameMiddle = () => {
         setImages({ image1: null, image2: null });
         setPreviews({ image1: null, image2: null });
         // Refresh user images
-        const refreshRes = await api.get(`/user/info/${user._id}`);
+
+        const refreshRes = await api.get(`/user/info/${user.id}`);
         if (refreshRes.data?.status === "success") {
           setUserInfo(refreshRes.data.data?.user || null);
           const userImages = refreshRes.data.data?.images || [];
@@ -233,7 +234,7 @@ const MinigameMiddle = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <h3 className="mb-6 text-2xl font-bold text-[#ff9c33]">
+      <h3 className="mb-6 text-4xl font-bold text-[#ff9c33]">
         HÃY LƯU LẠI NHỮNG KHOẢNH KHẮC ĐẸP CỦA BẠN
       </h3>
 
@@ -288,15 +289,15 @@ const MinigameMiddle = () => {
                   }}
                 />
               ) : (
-                <div className="flex h-full w-full flex-col items-center justify-center text-2xl font-bold text-[#ff9c33]">
+                <div className="flex h-full w-full flex-col items-center justify-center text-4xl font-bold text-[#ff9c33]">
                   <span>PREVIEW</span>
-                  <span className="mt-2 text-base">
+                  <span className="mt-2 text-2xl">
                     {allowUpload ? "Click để thêm hình" : "Đã upload đủ ảnh"}
                   </span>
                 </div>
               )}
             </label>
-            <p className="mt-4 text-center text-sm font-medium text-gray-700">
+            <p className="mt-4 text-center text-xl font-medium text-gray-700">
               {taskDescriptions.task1}
             </p>
           </div>
@@ -330,15 +331,15 @@ const MinigameMiddle = () => {
                   }}
                 />
               ) : (
-                <div className="flex h-full w-full flex-col items-center justify-center text-2xl font-bold text-[#ff9c33]">
+                <div className="flex h-full w-full flex-col items-center justify-center text-4xl font-bold text-[#ff9c33]">
                   <span>PREVIEW</span>
-                  <span className="mt-2 text-base">
+                  <span className="mt-2 text-2xl">
                     {allowUpload ? "Click để thêm hình" : "Đã upload đủ ảnh"}
                   </span>
                 </div>
               )}
             </label>
-            <p className="mt-4 text-center text-sm font-medium text-gray-700">
+            <p className="mt-4 text-center text-xl font-medium text-gray-700">
               {taskDescriptions.task2}
             </p>
           </div>

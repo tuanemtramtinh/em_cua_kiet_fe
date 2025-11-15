@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useContext } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import MucLuc from "../components/PassportPage/MucLuc";
 
 import { FaEarthAmericas } from "react-icons/fa6";
@@ -19,11 +19,13 @@ import { Keyboard, Scrollbar, Navigation, Pagination } from "swiper/modules";
 import AppContext from "../contexts/AppContext";
 import apiUrl from "../constants/constant";
 import { useNavigate } from "react-router-dom";
+import api from "../lib/axios";
 
 const Passport = () => {
   const navigate = useNavigate();
 
   const { user } = useContext(AppContext);
+  const [message, setMessage] = useState("");
 
   const typeList = [
     {
@@ -52,6 +54,27 @@ const Passport = () => {
     videoLink = typeList.find((type) => type.title === user.type)?.videoUrl;
     pdfLink = typeList.find((type) => type.title === user.type)?.pdfUrl;
   }
+
+  const fetchUserApi = useCallback(async () => {
+    const respsonse = await api.get(`user/info/${user.id}`);
+    const data = respsonse.data.data;
+
+    if (data.user.approved === false && data.images.length == 2) {
+      setMessage(
+        "Nhiệm vụ của bạn đang được xét duyệt. Bạn sắp sửa hoàn thành hộ chiếu bản sắc số",
+      );
+    } else if (data.user.approved === true) {
+      setMessage("Chúc mừng bạn đã hoàn thiện hộ chiếu bản sắc số");
+    } else {
+      setMessage(
+        "Hãy nhanh chóng hoàn thành minigame để hoàn thiện hộ chiếu bản sắc số",
+      );
+    }
+  }, [user.id]);
+
+  useEffect(() => {
+    fetchUserApi();
+  }, []);
 
   return (
     <>
@@ -219,6 +242,20 @@ const Passport = () => {
                             </div>
                           </div>
                           <div>Trang 4</div>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                      <div className="flex h-full w-full items-center justify-center rounded-2xl bg-[#08083C] p-7">
+                        <div className="flex h-full w-full flex-col justify-between rounded-2xl bg-[#fbf9d7] p-5">
+                          <div></div>
+                          <div className="flex flex-col gap-2 text-2xl font-semibold italic">
+                            <div className="text-[#FF9C33]">{message}</div>
+                            <a href="/minigame" className="text-lg">
+                              Nhấn vào đây để truy cập trang Minigame
+                            </a>
+                          </div>
+                          <div>Trang 5</div>
                         </div>
                       </div>
                     </SwiperSlide>

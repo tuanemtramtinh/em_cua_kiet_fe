@@ -68,9 +68,13 @@ const Quiz = () => {
     const response = await api.post(`user/assign-type/${user.id}`, {
       point: totalScore,
     });
-    const userInfo = response.data.data;
-    setUser(userInfo);
-    localStorage.setItem("userInfo", JSON.stringify(userInfo));
+    const { _id, ...rest } = response.data.data;
+    const result = {
+      id: user.id,
+      ...rest,
+    };
+    setUser(result);
+    localStorage.setItem("userInfo", JSON.stringify(result));
   };
 
   if (showResult) {
