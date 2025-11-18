@@ -4,6 +4,7 @@ import MucLuc from "../components/PassportPage/MucLuc";
 
 import { FaEarthAmericas } from "react-icons/fa6";
 import { IoDocumentTextSharp } from "react-icons/io5";
+import { FaCertificate } from "react-icons/fa6";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -248,7 +249,10 @@ const Passport = () => {
                     <SwiperSlide>
                       <div className="flex h-full w-full items-center justify-center rounded-2xl bg-[#08083C] p-7">
                         <div className="flex h-full w-full flex-col justify-between rounded-2xl bg-[#fbf9d7] p-5">
-                          <div></div>
+                          <h2 className="flex flex-col items-center justify-center gap-4 text-2xl font-bold">
+                            CHỨNG NHẬN
+                            <FaCertificate className="text-4xl text-[#FF9C33]" />
+                          </h2>
                           <div className="flex flex-col gap-2 text-2xl font-semibold italic">
                             <div className="text-[#FF9C33]">{message}</div>
                             <a href="/minigame" className="text-lg">
