@@ -10,7 +10,7 @@ const Question7 = ({ onAnswer }) => {
 
   return (
     <div>
-      <p className="text-center mb-4 text-2xl font-bold">Bạn có thường thả cảm xúc hoặc bình luận dạo ở các nội dung bạn không quá chú ý tới không?</p>
+      <p className="text-center mb-4 text-2xl font-bold">Bạn có thường thả cảm xúc hoặc bình luận ở các nội dung mà bạn nhìn thấy trên không gian số?</p>
       <div className="flex justify-around">
         <button
           onClick={() => handleClick(0)}

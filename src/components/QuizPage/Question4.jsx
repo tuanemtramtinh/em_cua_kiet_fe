@@ -22,7 +22,7 @@ const Question4 = ({ onAnswer }) => {
           onClick={() => handleClick(1)}
           className={`px-6 py-3 rounded-full border-2 font-bold text-lg ${selected === 1 ? 'bg-orange-500 text-white border-orange-500' : 'bg-yellow-200 border-yellow-400'}`}
         >
-          Bình thường
+          Không quan tâm
         </button>
         <button
           onClick={() => handleClick(2)}
