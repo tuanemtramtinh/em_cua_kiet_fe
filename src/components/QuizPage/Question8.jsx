@@ -10,7 +10,7 @@ const Question8 = ({ onAnswer }) => {
 
   return (
     <div>
-      <p className="text-center mb-4 text-2xl font-bold">Tại các diễn đàn bạn tham gia, bạn sẽ ưa chuộng bài đăng của các người nổi tiếng, người thân hay đa dạng người dùng khác nhau?</p>
+      <p className="text-center mb-4 text-2xl font-bold">Tại các diễn đàn bạn tham gia, bạn sẽ ưa chuộng bài đăng của người nổi tiếng, người thân hay đa dạng người dùng khác nhau?</p>
       <div className="flex justify-around">
         <button
           onClick={() => handleClick(0)}
