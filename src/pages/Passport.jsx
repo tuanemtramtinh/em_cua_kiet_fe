@@ -65,7 +65,9 @@ const Passport = () => {
         "Nhiệm vụ của bạn đang được xét duyệt. Bạn sắp sửa hoàn thành hộ chiếu bản sắc số",
       );
     } else if (data.user.approved === true) {
-      setMessage("Chúc mừng bạn đã hoàn thiện hộ chiếu bản sắc số");
+      setMessage(
+        "CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH MỘT CHẶNG TRONG HÀNH TRÌNH MỞ KHÓA BẢN SẮC SỐ",
+      );
     } else {
       setMessage(
         "Hãy nhanh chóng hoàn thành minigame để hoàn thiện hộ chiếu bản sắc số",
@@ -248,17 +250,31 @@ const Passport = () => {
                     </SwiperSlide>
                     <SwiperSlide>
                       <div className="flex h-full w-full items-center justify-center rounded-2xl bg-[#08083C] p-7">
-                        <div className="flex h-full w-full flex-col justify-between rounded-2xl bg-[#fbf9d7] p-5">
-                          <h2 className="flex flex-col items-center justify-center gap-4 text-2xl font-bold">
-                            CHỨNG NHẬN
-                            <FaCertificate className="text-4xl text-[#FF9C33]" />
-                          </h2>
-                          <div className="flex flex-col gap-2 text-2xl font-semibold italic">
-                            <div className="text-[#FF9C33]">{message}</div>
-                            <a href="/minigame" className="text-lg">
-                              Nhấn vào đây để truy cập trang Minigame
-                            </a>
+                        <div className="relative flex h-full w-full flex-col justify-between rounded-2xl bg-[#fbf9d7] p-5">
+                          <div>
+                            <h2 className="flex flex-col items-center justify-center gap-4 text-4xl font-bold">
+                              CHỨNG NHẬN
+                              <img src="star.png" />
+                            </h2>
+                            <div className="flex flex-col gap-2 text-2xl font-semibold italic">
+                              <div className="text-[#FF9C33]">{message}</div>
+                              <a href="/minigame" className="text-lg">
+                                Nhấn vào đây để truy cập trang Minigame
+                              </a>
+                            </div>
                           </div>
+
+                          {message ===
+                            "CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH MỘT CHẶNG TRONG HÀNH TRÌNH MỞ KHÓA BẢN SẮC SỐ" && (
+                            <div className="absolute right-5 bottom-10 w-1/3">
+                              <img
+                                src="confirmed.png"
+                                className="w-full"
+                                alt=""
+                              />
+                            </div>
+                          )}
+
                           <div>Trang 5</div>
                         </div>
                       </div>
